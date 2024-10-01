@@ -3,9 +3,19 @@ import Logo from "../assets/logo.svg"
 import { useEffect } from "react";
 
 const Header = () => {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(() => {
+      const storedTheme = localStorage.getItem("theme");
+      try {
+        return storedTheme ? JSON.parse(storedTheme) : "light";
+      } catch {
+        return "light"
+      }
+    }
+  );
 
   useEffect(() => {
+    localStorage.setItem("theme", JSON.stringify(theme))
+
     document.documentElement.removeAttribute("class")
     document.documentElement.classList.add(theme)
   }, [theme])
@@ -13,8 +23,8 @@ const Header = () => {
   return (
     <header>
         <div className="logo">
-            <img src={Logo} alt="" />
-            <span>Taskmate</span>
+          <img src={Logo} alt="" />
+          <span>Taskmate</span>
         </div>
         <div className="themeSelector">
             <span onClick={() => setTheme("light")} className={theme === "light" ? "light activeTheme" : "light"}></span>
@@ -23,9 +33,6 @@ const Header = () => {
             <span onClick={() => setTheme("gOne")} className={theme === "gOne" ? "gOne activeTheme" : "gOne"}></span>
             <span onClick={() => setTheme("gTwo")} className={theme === "gTwo" ? "gTwo activeTheme" : "gTwo"}></span>
             <span onClick={() => setTheme("gThree")} className={theme === "gThree" ? "gThree activeTheme" : "gThree"}></span> 
-        </div>
-        <div>
-
         </div>
     </header>
   )
