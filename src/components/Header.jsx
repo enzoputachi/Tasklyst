@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Logo from "../assets/logo.svg"
+import AiLogo from "../assets/AiLogo.png"
 import { useEffect } from "react";
 
 const Header = () => {
@@ -23,7 +24,7 @@ const Header = () => {
   return (
     <header>
         <div className="logo">
-          <img src={Logo} alt="" />
+          <img src={AiLogo} alt="" />
           <span>Tasklyst</span>
         </div>
         <div className="themeSelector">
