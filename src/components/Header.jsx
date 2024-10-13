@@ -1,5 +1,4 @@
 import { useState } from "react"
-import Logo from "../assets/logo.svg"
 import AiLogo from "../assets/AiLogo.png"
 import { useEffect } from "react";
 
